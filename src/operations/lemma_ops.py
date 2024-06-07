@@ -16,7 +16,7 @@ def create_lemma(*, lemma: str, frequency: int, enumerated_lemmas: list[str]):
         'frequency': frequency,
         'enumerated_lemmas': enumerated_lemmas
     }
-    response = requests.post(f'{BASE_URL}/lemmas', json=data)
+    response = requests.post(f'{BASE_URL}', json=data)
     return response.json()
 
 def get_all_lemmas():
@@ -24,17 +24,17 @@ def get_all_lemmas():
     return response.json()
 
 def update_lemma(*, lemma: str, data: dict):
-    response = requests.put(f'{BASE_URL}/{lemma}', json=data)
+    response = requests.put(f'{BASE_URL}', json=data)
     return response.json()
 
 def delete_lemma(*, lemma: str):
-    response = requests.delete(f'{BASE_URL}/{lemma}')
+    response = requests.delete(f'{BASE_URL}')
     return response.json()
 
 if __name__ == '__main__':
     print(get_lemmas_schema())
-    print(create_lemma(lemma='test', frequency=1, enumerated_lemmas=['test_1']))
-    print(get_all_lemmas())
-    print(update_lemma(lemma='test', data={'frequency': 2}))
-    print(delete_lemma(lemma='test'))
+    #print(create_lemma(lemma='test', frequency=1, enumerated_lemmas=['test_1']))
+    #print(get_all_lemmas())
+    #print(update_lemma(lemma='test', data={'frequency': 2}))
+    #print(delete_lemma(lemma='test'))
 

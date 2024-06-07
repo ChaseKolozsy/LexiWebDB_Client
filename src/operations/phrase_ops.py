@@ -8,6 +8,7 @@ def create_phrase(data):
         print("Phrase created successfully!")
     else:
         print(f"Error creating phrase: {response.json()}")
+    return response
 
 def get_all_phrases():
     response = requests.get(f'{BASE_URL}')
@@ -73,8 +74,32 @@ if __name__ == '__main__':
     
     get_phrase_by_name(phrase)
 
-    print("Deleting phrase...\n\n")
+    response = create_phrase({
+        "phrase": phrase,
+        "lemma_references": ["dog_1", "the_1", "awesome_1", "is_1"],
+        "media_references": ["media1.mp4", "media2.mp4"],
+        "anki_card_ids": [1, 2],
+        "familiar": True,
+        "frequency": 1
+    })
+
+    print(f"verifying that phrase was not created twice...{response.json()}\n\n")
+    get_phrase_by_name(phrase)
+
+    print("Deleting phrase...")
     delete_phrase(phrase)
+
+    print("\n\nCreating phrase again...")
+    create_phrase({
+        "phrase": phrase,
+        "lemma_references": ["dog_1", "the_1", "awesome_1", "is_1"],
+        "media_references": ["media1.mp4", "media2.mp4"],
+        "anki_card_ids": [1, 2],
+        "familiar": True,
+        "frequency": 1
+    })
+
+    get_phrase_by_name(phrase)
 
     app_ops.reset_db()
 

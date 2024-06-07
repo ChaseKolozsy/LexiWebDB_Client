@@ -84,5 +84,5 @@ if __name__ == '__main__':
     print(get_all_enumerated_lemmas(), '\n\n')
     print(increment_frequency(lemma_name='dog_1'), '\n\n')
     print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
-    app_ops.reset_database()
+    app_ops.reset_db()
 

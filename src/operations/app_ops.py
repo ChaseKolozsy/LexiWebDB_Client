@@ -16,7 +16,26 @@ def reset_database():
     else:
         print(f"Error resetting database: {response.json()}")
 
+def initialize_db_with_opt_in_fields(opt_in_fields=None):
+    initialize_database()
+    response = requests.post(f'{BASE_URL}/drop_columns', json={'opt_in_fields': opt_in_fields})
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f"Error initializing database with opt-in fields: {response.json()}")
+
+def reset_db_with_opt_in_fields(opt_in_fields=None):
+    reset_database()
+    response = requests.post(f'{BASE_URL}/drop_columns', json={'opt_in_fields': opt_in_fields})
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f"Error initializing database with opt-in fields: {response.json()}")
+
 if __name__ == '__main__':
-    print(initialize_database())
-    print(reset_database())
+    initialize_database()
+    reset_database()
+    opt_in_fields = ['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']
+    print(initialize_db_with_opt_in_fields(opt_in_fields))
+    print(reset_db_with_opt_in_fields(opt_in_fields))
 

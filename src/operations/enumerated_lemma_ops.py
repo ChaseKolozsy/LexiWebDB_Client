@@ -78,11 +78,11 @@ if __name__ == '__main__':
     response = get_all_enumerated_lemmas()
     for enumerated_lemma in response['enumerated_lemmas']:
         print(enumerated_lemma, '\n')
-    #print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}), '\n\n')
-    #print(delete_enumerated_lemma(enumerated_lemma='dog_2'), '\n\n')
-    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
-    #print(get_all_enumerated_lemmas(), '\n\n')
-    #print(increment_frequency(lemma_name='dog_1'), '\n\n')
-    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
+    print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}), '\n\n')
+    print(delete_enumerated_lemma(enumerated_lemma='dog_2'), '\n\n')
+    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
+    print(get_all_enumerated_lemmas(), '\n\n')
+    print(increment_frequency(lemma_name='dog_1'), '\n\n')
+    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
     app_ops.reset_database()
 

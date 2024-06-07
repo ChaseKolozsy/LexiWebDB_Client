@@ -26,6 +26,10 @@ def delete_enumerated_lemma(enumerated_lemma):
     response = requests.delete(f'{BASE_URL}/{enumerated_lemma}')
     return response.json()
 
+def increment_frequency(lemma_name):
+    response = requests.post(f'{BASE_URL}/increment_frequency/{lemma_name}')
+    return response.json()
+
 if __name__ == '__main__':
     import app_ops
     print(get_enumerated_lemmas_schema())
@@ -38,7 +42,7 @@ if __name__ == '__main__':
         'frequency': 12345,
         'phrase': 'Look at the dog who is barking',
         'story_link': 'https://www.example.com',
-        'media_excerpts': 'filename.mp4',
+        'media_excerpts': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True 
     }
@@ -50,9 +54,10 @@ if __name__ == '__main__':
         'frequency': 0,
         'phrase': 'The guy keeps dogging me no matter what I do.',
         'story_link': 'https://www.example.com',
-        'media_excerpts': 'filename_1.mp4',
+        'media_excerpts': ['filename_1.mp4'],
         'object_exploration_link': 'https://www.example.com',
-        'familiar': False 
+        'familiar': False,
+        'anki_card_ids': [1, 2, 3]
     }
     dog_3 = {
         'enumerated_lemma': 'dog_3',
@@ -62,18 +67,22 @@ if __name__ == '__main__':
         'frequency': 77,
         'phrase': "What's up dog?",
         'story_link': 'https://www.example.com',
-        'media_excerpts': 'filename_2.mp4',
+        'media_excerpts': ['filename_2.mp4'],
         'object_exploration_link': 'https://www.example.com',
-        'familiar': True 
+        'familiar': True,
+        'anki_card_ids': [88, 99, 111]
     }
     enumerated_lemmas = [dog_1, dog_2, dog_3]
     for enumerated_lemma in enumerated_lemmas:
-        print(create_enumerated_lemma(data=enumerated_lemma))
-    print(get_all_enumerated_lemmas())
-    print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}), '\n\n')
-    print(delete_enumerated_lemma(enumerated_lemma='dog_2'), '\n\n')
-    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
-    print(get_all_enumerated_lemmas())
-
+        print(create_enumerated_lemma(data=enumerated_lemma), '\n')
+    response = get_all_enumerated_lemmas()
+    for enumerated_lemma in response['enumerated_lemmas']:
+        print(enumerated_lemma, '\n')
+    #print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}), '\n\n')
+    #print(delete_enumerated_lemma(enumerated_lemma='dog_2'), '\n\n')
+    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
+    #print(get_all_enumerated_lemmas(), '\n\n')
+    #print(increment_frequency(lemma_name='dog_1'), '\n\n')
+    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
     app_ops.reset_database()
 

@@ -1,0 +1,14 @@
+# Python specific
+*.pyc
+__pycache__
+venv/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook specific
+.ipynb_checkpoints
+
+# Environment
+.env
+.env/

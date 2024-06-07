@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = 'http://127.0.0.1:5000/lemmas'
+BASE_URL = 'http://localhost:5002/lemmas'
 
 def get_lemmas_schema():
     response = requests.get(f'{BASE_URL}/schema')

@@ -32,6 +32,7 @@ def increment_frequency(lemma_name):
 
 if __name__ == '__main__':
     import app_ops
+    app_ops.reset_db()
     print(get_enumerated_lemmas_schema())
     print(get_all_enumerated_lemmas())
     dog_1 = {
@@ -84,5 +85,4 @@ if __name__ == '__main__':
     print(get_all_enumerated_lemmas(), '\n\n')
     print(increment_frequency(lemma_name='dog_1'), '\n\n')
     print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
-    app_ops.reset_db()
 

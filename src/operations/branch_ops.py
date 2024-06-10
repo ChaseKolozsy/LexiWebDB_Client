@@ -31,17 +31,22 @@ def delete_branch(branch_id):
     return response.json()
 
 if __name__ == '__main__':
+    import app_ops
     # Example usage
+    app_ops.reset_db()
+
     print("Schema:", get_branches_schema())
 
-    print("Creating branch:", create_branch('root1', 'branch1'))
-
+    print("\n\nCreating branch:", create_branch('root1', 'branch1'))
     print("All branches:", get_all_branches())
 
     branch_id = 1
-    print(f"Branch {branch_id}:", get_branch_by_id(branch_id))
+    print(f"\n\nBranch {branch_id}:", get_branch_by_id(branch_id))
 
     update_data = {'branch_name': 'updated_branch1'}
-    print(f"Updating branch {branch_id}:", update_branch(branch_id, update_data))
+    print(f"\n\nUpdating branch {branch_id}:", update_branch(branch_id, update_data))
+    print(f"Branch {branch_id}:", get_branch_by_id(branch_id))
 
-    print(f"Deleting branch {branch_id}:", delete_branch(branch_id))
+    print(f"\n\nDeleting branch {branch_id}:", delete_branch(branch_id))
+    print("All branches:", get_all_branches())
+

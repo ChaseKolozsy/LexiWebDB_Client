@@ -33,21 +33,26 @@ def delete_attribute(attribute_id):
     return response.json()
 
 if __name__ == "__main__":
+    import app_ops
+    app_ops.reset_db()
     # Example usage
     print("Schema:", get_attributes_schema())
     
-    print("All Attributes:", get_all_attributes())
     
     new_attr = create_attribute("New Attribute")
-    print("Created Attribute:", new_attr)
+    print("\n\nCreated Attribute:", new_attr)
+    print("\nAll Attributes:", get_all_attributes())
     
-    attr_id = new_attr.get("id")
-    if attr_id:
-        print("Get Attribute:", get_attribute(attr_id))
+    attribute_id = new_attr.get("attribute_id")
+    if attribute_id:
+        print("Get Attribute:", get_attribute(attribute_id))
         
-        updated_attr = update_attribute(attr_id, "Updated Attribute")
-        print("Updated Attribute:", updated_attr)
+        updated_attr = update_attribute(attribute_id, "Updated Attribute")
+        print("\n\nUpdated Attribute:", updated_attr)
+        print("\nAll Attributes:", get_all_attributes())
         
-        print("Delete Attribute:", delete_attribute(attr_id))
+        print("\n\nGet Attribute by Name:", get_attribute_by_name("Updated Attribute"))
+
+        print("\n\nDelete Attribute:", delete_attribute(attribute_id))
+        print("\nAll Attributes:", get_all_attributes())
     
-    print("Get Attribute by Name:", get_attribute_by_name("Updated Attribute"))

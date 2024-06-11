@@ -38,22 +38,31 @@ def delete_routine(routine_id):
     response = requests.delete(f"{BASE_URL}/{routine_id}")
     return response.json()
 
+def get_objects_by_routine(routine_id):
+    response = requests.get(f"{BASE_URL}/{routine_id}/objects")
+    return response.json()
+
 if __name__ == "__main__":
+    import app_ops
+    app_ops.reset_db()
     # Example usage
     print("Schema:", get_routines_schema())
     
-    print("All Routines:", get_all_routines())
-    
     new_routine = create_routine("Morning Routine", "Wake up, exercise, breakfast")
-    print("Created Routine:", new_routine)
+    print("\n\nCreated Routine:", new_routine)
+    print("\nAll Routines:", get_all_routines())
     
-    routine_id = new_routine.get("id")
+    routine_id = new_routine.get("routine_id")
+    print("\n\nRoutine ID:", routine_id)
     if routine_id:
-        print("Get Routine:", get_routine(routine_id))
+        print("\n\nGet Routine:", get_routine(routine_id))
         
         updated_routine = update_routine(routine_id, "Updated Morning Routine", "Wake up, exercise, breakfast, read")
-        print("Updated Routine:", updated_routine)
+        print("\n\nUpdated Routine:", updated_routine)
+        print("\nAll Routines:", get_all_routines())
         
-        print("Delete Routine:", delete_routine(routine_id))
+        print("\n\nGet Routine by Name:", get_routine_by_name("Updated Morning Routine"))
+
+        print("\n\nDelete Routine:", delete_routine(routine_id))
+        print("\nAll Routines:", get_all_routines())
     
-    print("Get Routine by Name:", get_routine_by_name("Updated Morning Routine"))

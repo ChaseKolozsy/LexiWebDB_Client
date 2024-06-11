@@ -37,25 +37,48 @@ def add_association(object_id, assoc_type, assoc_id):
     response = requests.post(f"{BASE_URL}/{object_id}/add_association", json=data)
     return response.json()
 
+def query_by_association(assoc_type, assoc_id):
+    data = {"type": assoc_type, "id": assoc_id}
+    response = requests.post(f"{BASE_URL}/query_by_association", json=data)
+    return response.json()
+
+def remove_association(object_id, assoc_type, assoc_id):
+    data = {"type": assoc_type, "id": assoc_id}
+    response = requests.post(f"{BASE_URL}/{object_id}/remove_association", json=data)
+    return response.json()
+
 if __name__ == "__main__":
+    import app_ops
+    import verb_ops
+    app_ops.reset_db()
+
     # Example usage
     print("Schema:", get_objects_schema())
     
-    print("All Objects:", get_all_objects())
     
     new_obj = create_object("New Object")
-    print("Created Object:", new_obj)
+    print("\n\nCreated Object:", new_obj)
+    print("\nAll Objects:", get_all_objects())
     
-    obj_id = new_obj.get("id")
-    if obj_id:
-        print("Get Object:", get_object(obj_id))
+    object_id = new_obj.get("object_id")
+    print("\n\nObject ID:", object_id)
+    if object_id:
+        print("Get Object:", get_object(object_id))
         
-        updated_obj = update_object(obj_id, "Updated Object")
-        print("Updated Object:", updated_obj)
+        updated_obj = update_object(object_id, "Updated Object")
+        print("\n\nUpdated Object:", updated_obj)
         
-        print("Delete Object:", delete_object(obj_id))
+        print("\n\nGet Object by Name:", get_object_by_name("Updated Object"))
+        
+        new_verb = verb_ops.create_verb("New Verb")
+        print("\n\nAdd Association:", add_association(object_id, "verb", new_verb.get("verb_id")))
+        print("\nQuery by Association:", query_by_association("verb", new_verb.get("verb_id")))
+        print("\nGet Objects by Verb:", verb_ops.get_objects_by_verb(new_verb.get("verb_id")))
+
+        print("\n\nRemove Association:", remove_association(object_id, "verb", new_verb.get("verb_id")))
+        print("\nQuery by Association:", query_by_association("verb", new_verb.get("verb_id")))
+        print("\nGet Objects by Verb:", verb_ops.get_objects_by_verb(new_verb.get("verb_id")))
+
+        print("\n\nDelete Object:", delete_object(object_id))
+        print("\nAll Objects:", get_all_objects())
     
-    print("Get Object by Name:", get_object_by_name("Updated Object"))
-    
-    if obj_id:
-        print("Add Association:", add_association(obj_id, "verb", 1))

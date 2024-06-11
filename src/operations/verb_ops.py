@@ -32,6 +32,10 @@ def delete_verb(verb_id):
     response = requests.delete(f"{BASE_URL}/{verb_id}")
     return response.json()
 
+def get_objects_by_verb(verb_id):
+    response = requests.get(f"{BASE_URL}/{verb_id}/objects")
+    return response.json()
+
 if __name__ == "__main__":
     import app_ops
     app_ops.reset_db()

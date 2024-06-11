@@ -32,22 +32,34 @@ def delete_state(state_id):
     response = requests.delete(f"{BASE_URL}/{state_id}")
     return response.json()
 
+def get_objects_by_state(state_id):
+    response = requests.get(f"{BASE_URL}/{state_id}/objects")
+    return response.json()
+
 if __name__ == "__main__":
+    import app_ops
+    app_ops.reset_db()
+
     # Example usage
     print("Schema:", get_states_schema())
     
-    print("All States:", get_all_states())
     
     new_state = create_state("New State")
-    print("Created State:", new_state)
+    print("\n\nCreated State:", new_state)
+    print("\nAll States:", get_all_states())
     
-    state_id = new_state.get("id")
+    state_id = new_state.get("state_id")
+    print("\nState ID:", state_id)
+
     if state_id:
         print("Get State:", get_state(state_id))
         
         updated_state = update_state(state_id, "Updated State")
-        print("Updated State:", updated_state)
+        print("\n\nUpdated State:", updated_state)
+        print("\nAll States:", get_all_states())
         
-        print("Delete State:", delete_state(state_id))
+        print("\n\nGet State by Name:", get_state_by_name("Updated State"))
+
+        print("\n\nDelete State:", delete_state(state_id))
+        print("\nAll States:", get_all_states())
     
-    print("Get State by Name:", get_state_by_name("Updated State"))

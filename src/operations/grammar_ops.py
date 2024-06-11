@@ -35,19 +35,24 @@ def delete_grammar_point(gp_id):
     return response.json()
 
 if __name__ == "__main__":
+    import app_ops
     # Example usage
+    app_ops.reset_db()
     print("Schema:", get_grammar_points_schema())
     
-    print("All Grammar Points:", get_all_grammar_points())
-    
     new_gp = create_grammar_point("Past Tense", "I walked to the store.")
-    print("Created Grammar Point:", new_gp)
+    print("\n\nCreated Grammar Point:", new_gp)
+    print("\nAll Grammar Points:", get_all_grammar_points())
     
-    gp_id = new_gp.get("id")
+    
+    gp_id = new_gp.get("gp_id")
+    print("\n\nGrammar Point ID:", gp_id)
     if gp_id:
         print("Get Grammar Point:", get_grammar_point(gp_id))
         
         updated_gp = update_grammar_point(gp_id, "Past Tense Updated", "I walked to the park.")
-        print("Updated Grammar Point:", updated_gp)
+        print("\n\nUpdated Grammar Point:", updated_gp)
+        print("\nAll Grammar Points:", get_all_grammar_points())
         
-        print("Delete Grammar Point:", delete_grammar_point(gp_id))
+        print("\n\nDelete Grammar Point:", delete_grammar_point(gp_id))
+        print("\nAll Grammar Points:", get_all_grammar_points())

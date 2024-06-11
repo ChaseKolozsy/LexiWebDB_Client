@@ -33,21 +33,28 @@ def delete_verb(verb_id):
     return response.json()
 
 if __name__ == "__main__":
+    import app_ops
+    app_ops.reset_db()
+
     # Example usage
     print("Schema:", get_verbs_schema())
     
-    print("All Verbs:", get_all_verbs())
-    
     new_verb = create_verb("New Verb")
-    print("Created Verb:", new_verb)
+    print("\n\nCreated Verb:", new_verb)
+    print("\nAll Verbs:", get_all_verbs())
     
-    verb_id = new_verb.get("id")
+    
+    verb_id = new_verb.get("verb_id")
+    print("\nVerb ID:", verb_id)
     if verb_id:
-        print("Get Verb:", get_verb(verb_id))
+        print("\n\nGet Verb:", get_verb(verb_id))
         
         updated_verb = update_verb(verb_id, "Updated Verb")
-        print("Updated Verb:", updated_verb)
+        print("\n\nUpdated Verb:", updated_verb)
+        print("\nAll Verbs:", get_all_verbs())
         
-        print("Delete Verb:", delete_verb(verb_id))
+        print("\n\nGet Verb by Name:", get_verb_by_name("Updated Verb"))
+
+        print("\n\nDelete Verb:", delete_verb(verb_id))
+        print("\nAll Verbs:", get_all_verbs())
     
-    print("Get Verb by Name:", get_verb_by_name("Updated Verb"))

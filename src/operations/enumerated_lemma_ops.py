@@ -43,7 +43,7 @@ if __name__ == '__main__':
         'frequency': 12345,
         'phrase': 'Look at the dog who is barking',
         'story_link': 'https://www.example.com',
-        'media_excerpts': ['filename.mp4'],
+        'media_references': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True 
     }
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         'frequency': 0,
         'phrase': 'The guy keeps dogging me no matter what I do.',
         'story_link': 'https://www.example.com',
-        'media_excerpts': ['filename_1.mp4'],
+        'media_references': ['filename_1.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': False,
         'anki_card_ids': [1, 2, 3]
@@ -68,7 +68,7 @@ if __name__ == '__main__':
         'frequency': 77,
         'phrase': "What's up dog?",
         'story_link': 'https://www.example.com',
-        'media_excerpts': ['filename_2.mp4'],
+        'media_references': ['filename_2.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True,
         'anki_card_ids': [88, 99, 111]

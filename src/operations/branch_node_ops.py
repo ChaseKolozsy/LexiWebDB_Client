@@ -47,7 +47,7 @@ if __name__ == '__main__':
         'frequency': 12345,
         'phrase': 'Look at the dog who is barking',
         'story_link': 'https://www.example.com',
-        'media_excerpts': ['filename.mp4'],
+        'media_references': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True 
     }
@@ -73,7 +73,7 @@ if __name__ == '__main__':
         'frequency': 100,
         'phrase': 'The canine is a loyal animal.',
         'story_link': 'https://www.example.com',
-        'media_excerpts': ['filename_canine.mp4'],
+        'media_references': ['filename_canine.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True 
     }

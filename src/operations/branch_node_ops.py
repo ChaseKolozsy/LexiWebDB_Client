@@ -49,7 +49,8 @@ if __name__ == '__main__':
         'story_link': 'https://www.example.com',
         'media_references': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
-        'familiar': True 
+        'familiar': True,
+        'active': True
     }
     print("Creating enumerated lemma:", enumerated_lemma_ops.create_enumerated_lemma(data=dog_1))
 
@@ -75,7 +76,8 @@ if __name__ == '__main__':
         'story_link': 'https://www.example.com',
         'media_references': ['filename_canine.mp4'],
         'object_exploration_link': 'https://www.example.com',
-        'familiar': True 
+        'familiar': True,
+        'active': True
     }
     print("\n\nCreating enumerated lemma for child node:", enumerated_lemma_ops.create_enumerated_lemma(data=child_lemma))
 

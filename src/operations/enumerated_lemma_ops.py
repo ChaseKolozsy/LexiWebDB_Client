@@ -45,7 +45,8 @@ if __name__ == '__main__':
         'story_link': 'https://www.example.com',
         'media_references': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
-        'familiar': True 
+        'familiar': True,
+        'active': True
     }
     dog_2 = {
         'enumerated_lemma': 'dog_2',
@@ -58,6 +59,7 @@ if __name__ == '__main__':
         'media_references': ['filename_1.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': False,
+        'active': False,
         'anki_card_ids': [1, 2, 3]
     }
     dog_3 = {
@@ -71,6 +73,7 @@ if __name__ == '__main__':
         'media_references': ['filename_2.mp4'],
         'object_exploration_link': 'https://www.example.com',
         'familiar': True,
+        'active': False,
         'anki_card_ids': [88, 99, 111]
     }
     enumerated_lemmas = [dog_1, dog_2, dog_3]

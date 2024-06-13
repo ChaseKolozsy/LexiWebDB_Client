@@ -18,6 +18,10 @@ def get_enumerated_lemma_by_name(lemma_name):
     response = requests.get(f'{BASE_URL}/{lemma_name}')
     return response.json()
 
+def get_enumerated_lemma_by_base_lemma(base_lemma):
+    response = requests.get(f'{BASE_URL}/base_lemma/{base_lemma}')
+    return response.json()
+
 def update_enumerated_lemma(enumerated_lemma, data):
     response = requests.put(f'{BASE_URL}/{enumerated_lemma}', json=data)
     return response.json()
@@ -29,6 +33,7 @@ def delete_enumerated_lemma(enumerated_lemma):
 def increment_frequency(lemma_name):
     response = requests.post(f'{BASE_URL}/increment_frequency/{lemma_name}')
     return response.json()
+
 
 if __name__ == '__main__':
     import app_ops

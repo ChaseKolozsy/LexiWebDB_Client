@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = 'http://localhost:5002/phrases'
+BASE_URL = 'http://localhost:5002/api/phrases'
 
 def create_phrase(data):
     response = requests.post(f'{BASE_URL}', json=data)

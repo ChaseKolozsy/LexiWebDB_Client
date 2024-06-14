@@ -4,19 +4,19 @@ BASE_URL = 'http://localhost:5002/enumerated_lemmas'
 
 def get_enumerated_lemmas_schema():
     response = requests.get(f'{BASE_URL}/schema')
-    return response.json()
+    return response
 
 def create_enumerated_lemma(*, data: dict):
     response = requests.post(BASE_URL, json=data)
-    return response.json()
+    return response
 
 def get_all_enumerated_lemmas():
     response = requests.get(BASE_URL)
-    return response.json()
+    return response
 
 def get_enumerated_lemma_by_name(lemma_name):
     response = requests.get(f'{BASE_URL}/{lemma_name}')
-    return response.json()
+    return response
 
 def get_enumerated_lemma_by_base_lemma(base_lemma):
     response = requests.get(f'{BASE_URL}/base_lemma/{base_lemma}')
@@ -24,15 +24,15 @@ def get_enumerated_lemma_by_base_lemma(base_lemma):
 
 def update_enumerated_lemma(enumerated_lemma, data):
     response = requests.put(f'{BASE_URL}/{enumerated_lemma}', json=data)
-    return response.json()
+    return response
 
 def delete_enumerated_lemma(enumerated_lemma):
     response = requests.delete(f'{BASE_URL}/{enumerated_lemma}')
-    return response.json()
+    return response
 
 def increment_frequency(lemma_name):
     response = requests.post(f'{BASE_URL}/increment_frequency/{lemma_name}')
-    return response.json()
+    return response
 
 
 if __name__ == '__main__':
@@ -83,14 +83,14 @@ if __name__ == '__main__':
     }
     enumerated_lemmas = [dog_1, dog_2, dog_3]
     for enumerated_lemma in enumerated_lemmas:
-        print(create_enumerated_lemma(data=enumerated_lemma), '\n')
-    response = get_all_enumerated_lemmas()
+        print(create_enumerated_lemma(data=enumerated_lemma).json(), '\n')
+    response = get_all_enumerated_lemmas().json()
     for enumerated_lemma in response['enumerated_lemmas']:
         print(enumerated_lemma, '\n')
-    print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}), '\n\n')
-    print(delete_enumerated_lemma(enumerated_lemma='dog_2'), '\n\n')
-    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
-    print(get_all_enumerated_lemmas(), '\n\n')
-    print(increment_frequency(lemma_name='dog_1'), '\n\n')
-    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1'), '\n\n')
+    print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}).json(), '\n\n')
+    print(delete_enumerated_lemma(enumerated_lemma='dog_2').json(), '\n\n')
+    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
+    print(get_all_enumerated_lemmas().json(), '\n\n')
+    print(increment_frequency(lemma_name='dog_1').json(), '\n\n')
+    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
 

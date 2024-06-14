@@ -20,7 +20,7 @@ def get_enumerated_lemma_by_name(lemma_name):
 
 def get_enumerated_lemma_by_base_lemma(base_lemma):
     response = requests.get(f'{BASE_URL}/base_lemma/{base_lemma}')
-    return response.json()
+    return response
 
 def update_enumerated_lemma(enumerated_lemma, data):
     response = requests.put(f'{BASE_URL}/{enumerated_lemma}', json=data)

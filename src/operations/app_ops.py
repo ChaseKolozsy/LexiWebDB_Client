@@ -33,13 +33,13 @@ def reset_db_with_opt_in_fields(*, table_name: str, opt_in_fields: list):
         print(f"Error initializing database with opt-in fields: {response.json()}")
 
 if __name__ == '__main__':
-    init_db()
+    #init_db()
     reset_db()
-    opt_in_fields = ['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']
-    print(init_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
-    opt_in_fields = ['branch_id', 'root_node']
-    print(init_db_with_opt_in_fields(table_name='branches', opt_in_fields=opt_in_fields))
-    opt_in_fields = ['note_id', 'branch_id']
-    print(init_db_with_opt_in_fields(table_name='branch_nodes', opt_in_fields=opt_in_fields))
+    #opt_in_fields = ['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']
+    #print(init_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
+    #opt_in_fields = ['branch_id', 'root_node']
+    #print(init_db_with_opt_in_fields(table_name='branches', opt_in_fields=opt_in_fields))
+    #opt_in_fields = ['note_id', 'branch_id']
+    #print(init_db_with_opt_in_fields(table_name='branch_nodes', opt_in_fields=opt_in_fields))
     #print(reset_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
 

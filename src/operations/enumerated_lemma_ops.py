@@ -81,16 +81,45 @@ if __name__ == '__main__':
         'active': False,
         'anki_card_ids': [88, 99, 111]
     }
-    enumerated_lemmas = [dog_1, dog_2, dog_3]
+    do_1 = {
+        'enumerated_lemma': 'do_1',
+        'base_lemma': 'do',
+        'part_of_speech': 'verb',
+        'definition': 'to do',
+        'frequency': 0,
+    }
+    not_1 = {
+        'enumerated_lemma': 'not_1',
+        'base_lemma': 'not',
+        'part_of_speech': 'adverb',
+        'definition': 'not',
+        'frequency': 0,
+    }
+    me_1 = {
+        'enumerated_lemma': 'me_1',
+        'base_lemma': 'me',
+        'part_of_speech': 'pronoun',
+        'definition': 'you',
+        'frequency': 0,
+    }
+    man_1 = {
+        'enumerated_lemma': 'man_1',
+        'base_lemma': 'man',
+        'part_of_speech': 'noun',
+        'definition': 'a human male',
+        'frequency': 0,
+    }
+    enumerated_lemmas = [dog_1, dog_2, dog_3, do_1, not_1, me_1, man_1]
     for enumerated_lemma in enumerated_lemmas:
         print(create_enumerated_lemma(data=enumerated_lemma).json(), '\n')
-    response = get_all_enumerated_lemmas().json()
-    for enumerated_lemma in response['enumerated_lemmas']:
-        print(enumerated_lemma, '\n')
-    print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}).json(), '\n\n')
-    print(delete_enumerated_lemma(enumerated_lemma='dog_2').json(), '\n\n')
-    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
-    print(get_all_enumerated_lemmas().json(), '\n\n')
-    print(increment_frequency(lemma_name='dog_1').json(), '\n\n')
-    print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
+    #response = get_all_enumerated_lemmas().json()
+    #for enumerated_lemma in response['enumerated_lemmas']:
+    #    print(enumerated_lemma, '\n')
+    print(get_enumerated_lemma_by_base_lemma(base_lemma='dog').json(), '\n\n')
+    #print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}).json(), '\n\n')
+    #print(delete_enumerated_lemma(enumerated_lemma='dog_2').json(), '\n\n')
+    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
+    #print(get_all_enumerated_lemmas().json(), '\n\n')
+    #print(increment_frequency(lemma_name='dog_1').json(), '\n\n')
+    #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
 

@@ -32,9 +32,24 @@ def reset_db_with_opt_in_fields(*, table_name: str, opt_in_fields: list):
     else:
         print(f"Error initializing database with opt-in fields: {response.json()}")
 
+def get_encoding():
+    response = requests.get(f'{BASE_URL}/get_encoding')
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f"Error getting database encoding: {response.json()}")
+
+def set_encoding():
+    response = requests.post(f'{BASE_URL}/set_encoding')
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print(f"Error setting database encoding: {response.json()}")
+
 if __name__ == '__main__':
+    get_encoding()
     #init_db()
-    reset_db()
+    #reset_db()
     #opt_in_fields = ['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']
     #print(init_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
     #opt_in_fields = ['branch_id', 'root_node']

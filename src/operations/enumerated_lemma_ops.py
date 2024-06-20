@@ -38,8 +38,8 @@ def increment_frequency(lemma_name):
 if __name__ == '__main__':
     import app_ops
     app_ops.reset_db()
-    print(get_enumerated_lemmas_schema())
-    print(get_all_enumerated_lemmas())
+    print(get_enumerated_lemmas_schema().json())
+    print(get_all_enumerated_lemmas().json())
     dog_1 = {
         'enumerated_lemma': 'dog_1',
         'base_lemma': 'dog',
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         'definition': 'a human male',
         'frequency': 0,
     }
-    enumerated_lemmas = [dog_1, dog_2, dog_3, do_1, not_1, me_1, man_1]
+    enumerated_lemmas = [dog_1, dog_2, do_1, not_1, me_1, man_1]
     for enumerated_lemma in enumerated_lemmas:
         print(create_enumerated_lemma(data=enumerated_lemma).json(), '\n')
     #response = get_all_enumerated_lemmas().json()

@@ -4,57 +4,31 @@ BASE_URL = 'http://localhost:5002'
 
 def init_db():
     response = requests.get(f'{BASE_URL}/init_db')
-    if response.status_code == 200:
-        print("Database initialized successfully!")
-    else:
-        print(f"Error initializing database: {response.json()}")
+    return response
 
 def reset_db():
     response = requests.post(f'{BASE_URL}/reset_db')
-    if response.status_code == 200:
-        print("Database reset and reinitialized successfully!")
-    else:
-        print(f"Error resetting database: {response.json()}")
+    return response
 
 def init_db_with_opt_in_fields(*, table_name: str, opt_in_fields: list):
     init_db()
     response = requests.post(f'{BASE_URL}/drop_columns', json={'table_name': table_name, 'opt_in_fields': opt_in_fields})
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print(f"Error initializing database with opt-in fields: {response.json()}")
+    return response
 
 def reset_db_with_opt_in_fields(*, table_name: str, opt_in_fields: list):
     reset_db()
     response = requests.post(f'{BASE_URL}/drop_columns', json={'table_name': table_name, 'opt_in_fields': opt_in_fields})
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print(f"Error initializing database with opt-in fields: {response.json()}")
+    return response
 
 def get_encoding():
     response = requests.get(f'{BASE_URL}/get_encoding')
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print(f"Error getting database encoding: {response.json()}")
+    return response
 
 def set_encoding():
     response = requests.post(f'{BASE_URL}/set_encoding')
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print(f"Error setting database encoding: {response.json()}")
+    return response
 
 if __name__ == '__main__':
+    init_db()
+    reset_db()
     get_encoding()
-    #init_db()
-    #reset_db()
-    #opt_in_fields = ['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']
-    #print(init_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
-    #opt_in_fields = ['branch_id', 'root_node']
-    #print(init_db_with_opt_in_fields(table_name='branches', opt_in_fields=opt_in_fields))
-    #opt_in_fields = ['note_id', 'branch_id']
-    #print(init_db_with_opt_in_fields(table_name='branch_nodes', opt_in_fields=opt_in_fields))
-    #print(reset_db_with_opt_in_fields(table_name='enumerated_lemmas', opt_in_fields=['enumerated_lemma', 'definition', 'part_of_speech', 'frequency', 'familiar']))
-

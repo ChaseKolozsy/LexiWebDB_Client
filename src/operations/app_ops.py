@@ -29,6 +29,6 @@ def set_encoding():
     return response
 
 if __name__ == '__main__':
-    init_db()
-    reset_db()
-    get_encoding()
+     print(init_db().json())
+     print(reset_db().json())
+     print(get_encoding().json())

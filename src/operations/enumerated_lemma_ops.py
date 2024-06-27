@@ -1,5 +1,6 @@
 import requests
 
+
 BASE_URL = 'http://localhost:5002/api/enumerated_lemmas'
 
 def get_enumerated_lemmas_schema():
@@ -46,7 +47,7 @@ if __name__ == '__main__':
         'part_of_speech': 'noun',
         'definition': 'a domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, and a retractable claw',
         'frequency': 12345,
-        'phrase': 'Look at the dog who is barking',
+        'phrases': ['Look at the dog who is barking', 'The dog is barking'],
         'story_link': 'https://www.example.com',
         'media_references': ['filename.mp4'],
         'object_exploration_link': 'https://www.example.com',
@@ -59,7 +60,7 @@ if __name__ == '__main__':
         'part_of_speech': 'verb',
         'definition': 'to persistently follow or pursue someone or something, often with negative intentions or in a harassing manner.',
         'frequency': 0,
-        'phrase': 'The guy keeps dogging me no matter what I do.',
+        'phrases': ['The guy keeps dogging me no matter what I do.'],
         'story_link': 'https://www.example.com',
         'media_references': ['filename_1.mp4'],
         'object_exploration_link': 'https://www.example.com',
@@ -73,7 +74,7 @@ if __name__ == '__main__':
         'part_of_speech': 'noun',
         'definition': 'a friend or homie',
         'frequency': 77,
-        'phrase': "What's up dog?",
+        'phrases': ["What's up dog?"],
         'story_link': 'https://www.example.com',
         'media_references': ['filename_2.mp4'],
         'object_exploration_link': 'https://www.example.com',
@@ -109,13 +110,12 @@ if __name__ == '__main__':
         'definition': 'a human male',
         'frequency': 0,
     }
-    enumerated_lemmas = [dog_1, dog_2, do_1, not_1, me_1, man_1]
+    enumerated_lemmas = [dog_1, dog_2, dog_3, do_1, not_1, me_1, man_1]
     for enumerated_lemma in enumerated_lemmas:
         print(create_enumerated_lemma(data=enumerated_lemma).json(), '\n')
     #response = get_all_enumerated_lemmas().json()
     #for enumerated_lemma in response['enumerated_lemmas']:
     #    print(enumerated_lemma, '\n')
-    print(get_enumerated_lemma_by_base_lemma(base_lemma='dog').json(), '\n\n')
     #print(update_enumerated_lemma(enumerated_lemma='dog_1', data={'frequency': 2}).json(), '\n\n')
     #print(delete_enumerated_lemma(enumerated_lemma='dog_2').json(), '\n\n')
     #print("tryting to get dog_1 by name:", get_enumerated_lemma_by_name(lemma_name='dog_1').json(), '\n\n')
@@ -142,3 +142,10 @@ if __name__ == '__main__':
     #        if key == 'enumerated_lemma' or key == 'part_of_speech':
     #            print(f'{key}: {value}')
     #    print('\n\n')
+
+
+    response = get_enumerated_lemma_by_base_lemma(base_lemma='dog').json()
+    for lemma in response['enumerated_lemmas']:
+        for key, value in lemma.items():
+            print(f'{key}: {value}')
+        print('\n\n')
